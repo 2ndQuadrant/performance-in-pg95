@@ -1,5 +1,8 @@
 \d+
 
+CREATE TABLE test_parallel (a BIGINT, b NUMERIC);
+INSERT INTO test_parallel SELECT i, random() FROM generate_series(1,100000000) s(i);
+
 create or replace function cheap_func(bigint, int)
     returns bool
     parallel safe
